@@ -1,0 +1,15 @@
+data Procesador = UnProcesador {
+acumuladorA :: Int,
+acumuladorB :: Int,
+progamCounter :: Int,
+memoria :: [Int],
+mensajeError :: String
+} deriving (Show, Eq)
+
+division :: Procesador -> Procesador
+division (UnProcesador acA acB pc mem mError) = UnProcesador (div acA acB) 0 pc mem mError 
+
+lod :: Procesador -> Int -> Procesador
+lod (UnProcesador acA acB pc mem mError) n = UnProcesador acA acB pc (fun mem n acA) mError
+fun lista 1 num = [num] ++ (drop 1 lista)
+fun lista pos num = (take (pos-1) lista) ++ [num] ++ (drop pos lista) 
